@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kīpapa Grappling Club | Grappling Gym in Mililani, Hawaii</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Kīpapa Grappling Club is a new grappling gym in Mililani built on old-school values and modern instruction. Kids gi and no-gi classes, capped at 12 on the mat. Doors open August 3. Book a trial class.">
+<!-- TODO-LAUNCH: remove the noindex line below when the site goes live on kipapagrapplingclub.com -->
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Kīpapa Grappling Club | Mililani, Hawaii">
+<meta property="og:description" content="Old-school values, modern instruction. Kids grappling classes in Mililani, capped at 12 on the mat. Doors open August 3.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://darthkanaka.github.io/kipapa-site/assets/hero.jpg">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="preload" href="assets/fonts/oswald-var.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face{
+    font-family:'Oswald';
+    src:url('assets/fonts/oswald-var.woff2') format('woff2');
+    font-weight:200 700;
+    font-display:swap;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  :root{
+    --ink:#100E0C; --ink2:#161310; --bone:#EDE7DC; --bone-dim:#C9C1B5; --bone-dark:#B5ACA0;
+    --koa:#8B5C49; --ember:#C08A6F; --line:#2E2822; --line2:#221D19; --mut:#9C948A; --mut2:#7E766B
+  }
+  body{margin:0; background:var(--ink); color:var(--bone); overflow-x:hidden;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55; -webkit-text-size-adjust:100%}
+  .cond{font-family:'Oswald','Arial Narrow',Arial,sans-serif; font-weight:700; text-transform:uppercase}
+  .mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+  .inner{max-width:1060px; margin:0 auto; padding:0 24px}
+  a{color:inherit; text-decoration:none}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--ember); outline-offset:3px}
+  img{max-width:100%}
+
+  /* nav */
+  .nav{display:flex; justify-content:space-between; align-items:center; padding:16px 24px; max-width:1060px; margin:0 auto}
+  .nav .mark{display:flex; align-items:center; gap:10px}
+  .nav .mark img{width:30px; height:auto; filter:invert(1)}
+  .nav .mark span{font-size:12px; letter-spacing:.22em; font-weight:700}
+  .nav .links{display:flex; gap:18px; font-size:12.5px; color:var(--mut); align-items:center}
+  .nav .links a:hover{color:var(--bone)}
+  .nav .cta{background:var(--koa); color:#F5EFE6; padding:9px 15px; font-weight:700; font-size:12px; letter-spacing:.06em; text-transform:uppercase}
+
+  /* hero */
+  .hero{position:relative; overflow:hidden}
+  .hero .bg{position:absolute; inset:0; background:url('assets/hero.jpg') center 30%/cover no-repeat; opacity:.34; filter:grayscale(1) contrast(1.1)}
+  .hero .scrim{position:absolute; inset:0; background:linear-gradient(180deg, rgba(16,14,12,.55) 0%, rgba(16,14,12,.25) 45%, #100E0C 96%)}
+  .hero .inner{position:relative; padding-top:84px; padding-bottom:70px}
+  .eyebrow{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:11px; letter-spacing:.2em; color:var(--ember); margin:0 0 20px}
+  .h1{font-size:clamp(54px,12vw,140px); line-height:.9; margin:0 0 22px; letter-spacing:.01em; text-wrap:balance}
+  .h1 .koa{color:var(--ember)}
+  .h1 .out{color:transparent; -webkit-text-stroke:2.5px var(--bone)}
+  .sub{max-width:52ch; font-size:16.5px; line-height:1.6; color:var(--bone-dim); margin:0 0 28px}
+  .ctas{display:flex; gap:12px; flex-wrap:wrap}
+  .btn{display:inline-block; padding:16px 28px; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; transition:transform .25s ease; border:0}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.primary{background:var(--koa); color:#F5EFE6}
+  .btn.ghost{background:transparent; color:var(--bone); box-shadow:inset 0 0 0 1.5px #4A423A}
+  .micro{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:11.5px; color:var(--mut2); margin:16px 0 0}
+
+  /* ticker */
+  .mq{overflow:hidden; background:var(--koa); padding:12px 0; transform:rotate(-1.4deg) scale(1.03); border-top:3px solid var(--ink); border-bottom:3px solid var(--ink); position:relative; z-index:2}
+  .mq-track{display:flex; gap:34px; white-space:nowrap; width:max-content; animation:mq 40s linear infinite;
+    font-family:'Oswald',Arial,sans-serif; font-weight:600; text-transform:uppercase; font-size:13.5px; letter-spacing:.14em; color:#F5EFE6}
+  .mq-track i{font-style:normal; color:#3E2A22}
+  @keyframes mq{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+
+  /* sections */
+  .sec{padding:64px 0; position:relative; overflow:hidden}
+  .sec.tight{padding:48px 0}
+  .wk{position:absolute; right:-70px; top:-50px; width:440px; filter:invert(1); opacity:.045; pointer-events:none}
+  .label{display:inline-block; font-family:'Oswald',Arial,sans-serif; font-weight:600; text-transform:uppercase; font-size:13px; letter-spacing:.18em; color:#F5EFE6; background:var(--koa); padding:6px 14px; transform:skewX(-8deg); margin:0 0 18px}
+  .label b{display:inline-block; transform:skewX(8deg); font-weight:600}
+  .h2{font-size:clamp(34px,6vw,58px); line-height:.96; margin:0 0 18px; text-wrap:balance}
+  p.body{color:var(--bone-dark); font-size:15.5px; max-width:58ch; margin:0 0 14px}
+  .xlist{margin:22px 0 0; padding:0}
+  .xlist li{padding-left:26px; position:relative; color:var(--bone-dim); font-size:15px; margin-bottom:12px; list-style:none}
+  .xlist li::before{content:"\2715"; position:absolute; left:0; top:1px; color:var(--ember); font-size:13px; font-weight:700}
+
+  /* guide */
+  .guide{display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center}
+  .frame{min-height:340px; border:1px solid var(--line); position:relative; background:url('assets/hero.jpg') center 25%/cover no-repeat; filter:grayscale(1)}
+  .frame .cap{position:absolute; left:0; bottom:0; right:0; background:rgba(16,14,12,.8); padding:8px 12px;
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:10.5px; letter-spacing:.1em; color:var(--mut)}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px}
+  .chip{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:11px; letter-spacing:.06em; padding:7px 12px; color:var(--bone); background:#241F1B}
+  .chip.tbd{color:var(--mut2); border:1px dashed #4A423A; background:transparent}
+
+  /* steps */
+  .steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin-top:8px}
+  .step{border:1px solid var(--line); padding:24px 20px; background:var(--ink2)}
+  .step .n{font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:44px; line-height:1; color:transparent; -webkit-text-stroke:1.5px var(--ember); display:block; margin-bottom:14px}
+  .step h3{font-family:'Oswald',Arial,sans-serif; font-weight:600; text-transform:uppercase; margin:0 0 8px; font-size:20px; letter-spacing:.03em}
+  .step p{margin:0; font-size:13.5px; color:var(--mut); line-height:1.55}
+
+  /* schedule */
+  .sched{border:1px solid var(--line); margin-top:8px}
+  .row{display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:8px; padding:15px 18px; border-bottom:1px solid var(--line2); align-items:baseline}
+  .row:last-child{border-bottom:0}
+  .row .c{font-family:'Oswald',Arial,sans-serif; font-weight:600; text-transform:uppercase; font-size:16px; letter-spacing:.04em}
+  .row .d{color:var(--bone-dark); font-size:13.5px}
+  .row .t{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:12.5px; color:var(--ember); text-align:right; font-variant-numeric:tabular-nums}
+  .row.tbd .c,.row.tbd .d,.row.tbd .t{color:#5E564C}
+  /* TODO-GYMDESK: this static schedule gets replaced or augmented by the live GymDesk schedule embed in Phase 2 */
+
+  .ph{background:repeating-linear-gradient(-45deg,#1B1714 0 12px,#221D19 12px 24px); border:1px dashed #4A423A;
+    display:flex; align-items:center; justify-content:center; color:var(--mut2); text-align:center; padding:18px;
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:11px; letter-spacing:.12em; min-height:130px}
+
+  /* faith */
+  .faith{background:var(--ink2); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .faith .inner{padding-top:56px; padding-bottom:56px; max-width:780px}
+
+  /* faq */
+  .faq{max-width:780px}
+  .qa{border-bottom:1px solid var(--line2); padding:18px 0}
+  .qa h3{margin:0 0 6px; font-size:15px; color:var(--bone); font-weight:600}
+  .qa p{margin:0; font-size:14px; color:var(--mut); max-width:62ch}
+
+  /* cta band */
+  .cta-band{background:var(--koa); color:#F5EFE6}
+  .cta-band .inner{padding:56px 24px}
+  .cta-band .h2{color:#F5EFE6}
+  .cta-band .btn{background:var(--ink); color:var(--bone)}
+
+  /* footer */
+  .foot{padding:36px 0 44px; color:var(--mut2); font-size:13px}
+  .foot .mark{display:flex; align-items:center; gap:10px; margin-bottom:12px}
+  .foot .mark img{width:26px; height:auto; filter:invert(1) opacity(.85)}
+  .foot .mark span{font-size:11px; letter-spacing:.22em; font-weight:700; color:var(--bone-dim); text-transform:uppercase}
+  .foot p{margin:0 0 4px}
+  .foot a:hover{color:var(--bone)}
+
+  /* reveal */
+  .rv{opacity:0; transform:translateY(20px); transition:opacity .7s ease, transform .7s cubic-bezier(.22,.9,.3,1)}
+  .rv.vis{opacity:1; transform:none}
+  .stag > *:nth-child(2){transition-delay:.1s}
+  .stag > *:nth-child(3){transition-delay:.2s}
+  .stag > *:nth-child(4){transition-delay:.3s}
+  @media (prefers-reduced-motion: reduce){
+    .rv{opacity:1; transform:none; transition:none}
+    .mq-track{animation:none}
+    .btn:hover{transform:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* mobile */
+  @media (max-width:720px){
+    .nav .links a:not(.cta){display:none}
+    .h1 .out{-webkit-text-stroke:1.5px var(--bone)}
+    .guide{grid-template-columns:1fr}
+    .frame{min-height:260px}
+    .ctas{flex-direction:column}
+    .btn{display:block; width:100%; text-align:center}
+    .row{grid-template-columns:1fr; gap:2px}
+    .row .t{text-align:left}
+    .sec{padding:48px 0}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <a class="mark" href="#top">
+    <img src="assets/logo.png" alt="Kīpapa Grappling Club logo">
+    <span class="cond" style="font-weight:600">KĪPAPA</span>
+  </a>
+  <div class="links">
+    <a href="#schedule">Schedule</a>
+    <a href="#about">About</a>
+    <a href="#faq">FAQ</a>
+    <!-- TODO-GYMDESK: point this and every .js-book link at the real GymDesk booking or signup URL -->
+    <a class="cta js-book" href="#schedule">Book a trial class</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="bg" role="img" aria-label="Coaches and kids in gis at a grappling event"></div>
+  <div class="scrim"></div>
+  <div class="inner stag">
+    <p class="eyebrow rv">MILILANI, HAWAII · DOORS OPEN AUGUST 3</p>
+    <h1 class="h1 cond rv"><span class="out">Champions</span><br>are <span class="koa">forged</span><br>here.</h1>
+    <p class="sub rv">Kīpapa Grappling Club is a new grappling gym built on old-school values and modern instruction. Hard work, humility, and respect are expected from everyone on the mats. You bring the work. We pave the way.</p>
+    <div class="ctas rv">
+      <a class="btn primary js-book" href="#schedule">Book a trial class</a>
+      <a class="btn ghost" href="#schedule">See the schedule</a>
+    </div>
+    <p class="micro rv">TRIAL CLASSES RUN SUNDAYS, 8:00 TO 9:00 AM. NO EXPERIENCE NEEDED.</p>
+  </div>
+</header>
+
+<div class="mq" aria-hidden="true">
+  <div class="mq-track">
+    <span>Hard work</span><i>&#10022;</i><span>Humility</span><i>&#10022;</i><span>Respect</span><i>&#10022;</i><span>Consistency</span><i>&#10022;</i><span>Perseverance</span><i>&#10022;</i><span>Community</span><i>&#10022;</i><span>Faith</span><i>&#10022;</i>
+    <span>Hard work</span><i>&#10022;</i><span>Humility</span><i>&#10022;</i><span>Respect</span><i>&#10022;</i><span>Consistency</span><i>&#10022;</i><span>Perseverance</span><i>&#10022;</i><span>Community</span><i>&#10022;</i><span>Faith</span><i>&#10022;</i>
+  </div>
+</div>
+
+<section class="sec">
+  <img class="wk" src="assets/logo.png" alt="" aria-hidden="true">
+  <div class="inner">
+    <p class="label rv"><b>The problem</b></p>
+    <h2 class="h2 cond rv">Tough kids aren't born. They're built.</h2>
+    <p class="body rv">Every parent wants a kid who can hold their ground and stay humble doing it. That doesn't come from a screen and it doesn't come from talent. It comes from showing up, drilling, getting caught, and coming back Friday anyway.</p>
+    <ul class="xlist stag">
+      <li class="rv">Confidence that nobody ever tested isn't confidence. It's a guess.</li>
+      <li class="rv">Discipline doesn't grow at home on its own. It grows in a room with a standard.</li>
+      <li class="rv">And a kid with no outlet for all that energy will find one you didn't pick.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec tight" id="about">
+  <div class="inner guide">
+    <div class="frame rv">
+      <span class="cap">PHOTO FROM KIPAPAGRAPPLINGCLUB.COM</span>
+    </div>
+    <div class="stag">
+      <p class="label rv"><b>The room</b></p>
+      <h2 class="h2 cond rv">Led by Coach Gabriel.</h2>
+      <p class="body rv">Old-school values, modern instruction. Classes are structured, capped at 12 on the mat, and built so beginners, competitors, and families can all grow together. Leverage, technique, and timing over size and strength.</p>
+      <p class="body rv">Hard work, humility, and respect aren't a poster on the wall here. They're the price of admission, and Coach Gabriel pays it first.</p>
+      <div class="chips rv">
+        <span class="chip">Coach Gabriel</span>
+        <span class="chip">12 per class, max</span>
+        <span class="chip tbd">[LINEAGE + RANK: FROM GABRIEL]</span>
+        <span class="chip tbd">[YEARS ON THE MATS: FROM GABRIEL]</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="inner">
+    <p class="label rv"><b>How to start</b></p>
+    <h2 class="h2 cond rv">Three steps onto the mat.</h2>
+    <div class="steps stag">
+      <div class="step rv">
+        <span class="n" aria-hidden="true">01</span>
+        <h3>Book the trial</h3>
+        <p>Trial classes run Sundays at 8am. Sign the waiver online before you come in. It takes two minutes.</p>
+      </div>
+      <div class="step rv">
+        <span class="n" aria-hidden="true">02</span>
+        <h3>Show up ready</h3>
+        <p>Arrive 10 minutes early. Clean gear, trimmed nails. We'll handle everything else, including the nerves.</p>
+      </div>
+      <div class="step rv">
+        <span class="n" aria-hidden="true">03</span>
+        <h3>Keep showing up</h3>
+        <p>Champions are forged through consistency, perseverance, and community. There's no shortcut and that's the point.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec tight" id="schedule">
+  <div class="inner">
+    <p class="label rv"><b>The schedule</b></p>
+    <h2 class="h2 cond rv">On the mats this week.</h2>
+    <!-- TODO-GYMDESK: Phase 2 replaces or augments this static table with the live GymDesk schedule embed -->
+    <div class="sched rv">
+      <div class="row"><span class="c">Kids No-Gi</span><span class="d">Monday + Friday</span><span class="t">5:00 - 5:50 PM</span></div>
+      <div class="row"><span class="c">Kids Gi</span><span class="d">Saturday</span><span class="t">8:00 - 8:50 AM</span></div>
+      <div class="row"><span class="c">Trial Class</span><span class="d">Sunday</span><span class="t">8:00 - 9:00 AM</span></div>
+      <div class="row tbd"><span class="c">Adult Classes</span><span class="d">[Schedule TBD]</span><span class="t">[TBD]</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec tight">
+  <div class="inner">
+    <div class="ph rv">PROOF TO COLLECT AFTER OPENING:<br>2 PARENT QUOTES · 1 STUDENT STORY · PHOTOS FROM THE FIRST MONTH OF CLASSES</div>
+  </div>
+</section>
+
+<section class="faith">
+  <div class="inner">
+    <p class="label rv"><b>What holds it up</b></p>
+    <h2 class="h2 cond rv">Strength that stays humble.</h2>
+    <p class="body rv">This club is built on faith. Not preached at you, lived in front of you. It's why the standard here is humility as much as toughness, and why every kid on these mats gets led, not just coached.</p>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="inner faq">
+    <p class="label rv"><b>Questions</b></p>
+    <h2 class="h2 cond rv">Before you ask.</h2>
+    <div class="qa rv"><h3>Does my kid need experience?</h3><p>No. The room is built so beginners, competitors, and families can all grow together. Everyone starts at day one.</p></div>
+    <div class="qa rv"><h3>What do they wear?</h3><p>Monday and Friday are no-gi: athletic clothes work. Saturday is gi. [Loaner gi policy TBD with Gabriel.]</p></div>
+    <div class="qa rv"><h3>What's expected of us?</h3><p>Arrive 10 minutes early with clean, trimmed nails and a washed uniform, and complete the digital waiver before the first class. Mat space is capped at 12 students per session.</p></div>
+    <div class="qa rv"><h3>Is it safe?</h3><p>Classes are structured and led, focused on leverage, technique, and timing in a safe, high-energy environment.</p></div>
+    <div class="qa rv"><h3>How much does it cost?</h3><p>[Pricing TBD.] The trial class is how you find out if this is your kid's place before you commit.</p></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="inner">
+    <h2 class="h2 cond rv">Get on the mats.</h2>
+    <p class="rv" style="margin:0 0 22px; max-width:52ch; color:#EFE3D8; font-size:15px">Doors open August 3. Twelve spots per class. Book the Sunday trial and come see the room for yourself.</p>
+    <a class="btn js-book rv" href="#schedule">Book a trial class</a>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="inner">
+    <div class="mark">
+      <img src="assets/logo.png" alt="">
+      <span>Kīpapa Grappling Club</span>
+    </div>
+    <p><a href="https://maps.apple.com/?q=233+Akamainui+Street+Unit+27+Mililani+HI+96789">233 Akamainui Street, Unit 27 · Mililani, HI 96789</a></p>
+    <p><a href="mailto:info@kipapagrapplingclub.com">info@kipapagrapplingclub.com</a> · <a href="https://instagram.com/kipapagrapplingclub" rel="noopener">Instagram @kipapagrapplingclub</a></p>
+    <p class="mono" style="font-size:11px; letter-spacing:.08em; margin-top:10px">PAVING THE WAY FOR FUTURE GENERATIONS</p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('.rv');
+    if(reduce || !('IntersectionObserver' in window)){
+      els.forEach(function(el){ el.classList.add('vis'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); }
+      });
+    }, {threshold:.15});
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+</body>
+</html>
