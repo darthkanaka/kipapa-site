@@ -174,8 +174,7 @@
     <a href="#schedule">Schedule</a>
     <a href="#about">About</a>
     <a href="#faq">FAQ</a>
-    <!-- TODO-GYMDESK: point this and every .js-book link at the real GymDesk booking or signup URL -->
-    <a class="cta js-book" href="#schedule">Book a trial class</a>
+    <a class="cta js-book" href="https://app.gymdesk.com/signup/v/lBa2R">Book a trial class</a>
   </div>
 </nav>
 
@@ -187,7 +186,7 @@
     <h1 class="h1 cond rv"><span class="out">Champions</span><br>are <span class="koa">forged</span><br>here.</h1>
     <p class="sub rv">Kīpapa Grappling Club is a new grappling gym built on old-school values and modern instruction. Hard work, humility, and respect are expected from everyone on the mats. You bring the work. We pave the way.</p>
     <div class="ctas rv">
-      <a class="btn primary js-book" href="#schedule">Book a trial class</a>
+      <a class="btn primary js-book" href="https://app.gymdesk.com/signup/v/lBa2R">Book a trial class</a>
       <a class="btn ghost" href="#schedule">See the schedule</a>
     </div>
     <p class="micro rv">TRIAL CLASSES RUN SUNDAYS, 8:00 TO 9:00 AM. NO EXPERIENCE NEEDED.</p>
@@ -263,13 +262,15 @@
   <div class="inner">
     <p class="label rv"><b>The schedule</b></p>
     <h2 class="h2 cond rv">On the mats this week.</h2>
-    <!-- TODO-GYMDESK: Phase 2 replaces or augments this static table with the live GymDesk schedule embed -->
-    <div class="sched rv">
-      <div class="row"><span class="c">Kids No-Gi</span><span class="d">Monday + Friday</span><span class="t">5:00 - 5:50 PM</span></div>
-      <div class="row"><span class="c">Kids Gi</span><span class="d">Saturday</span><span class="t">8:00 - 8:50 AM</span></div>
-      <div class="row"><span class="c">Trial Class</span><span class="d">Sunday</span><span class="t">8:00 - 9:00 AM</span></div>
-      <div class="row tbd"><span class="c">Adult Classes</span><span class="d">[Schedule TBD]</span><span class="t">[TBD]</span></div>
+    <div class="sched rv" style="padding:6px">
+      <div class="gymdesk-schedule" attr-gym="lQvZ5" attr-visible_schedule="all" attr-default_schedule="all" attr-program="all"></div>
+      <noscript>
+        <div class="row"><span class="c">Kids No-Gi</span><span class="d">Monday + Friday</span><span class="t">5:00 - 5:50 PM</span></div>
+        <div class="row"><span class="c">Kids Gi</span><span class="d">Saturday</span><span class="t">8:00 - 8:50 AM</span></div>
+        <div class="row"><span class="c">Trial Class</span><span class="d">Sunday</span><span class="t">8:00 - 9:00 AM</span></div>
+      </noscript>
     </div>
+    <p class="micro rv" style="margin-top:12px">LIVE SCHEDULE, STRAIGHT FROM THE GYM. BOOK A SPOT RIGHT IN THE CALENDAR.</p>
   </div>
 </section>
 
@@ -303,7 +304,8 @@
   <div class="inner">
     <h2 class="h2 cond rv">Get on the mats.</h2>
     <p class="rv" style="margin:0 0 22px; max-width:52ch; color:#EFE3D8; font-size:15px">Doors open August 3. Twelve spots per class. Book the Sunday trial and come see the room for yourself.</p>
-    <a class="btn js-book rv" href="#schedule">Book a trial class</a>
+    <a class="btn js-book rv" href="https://app.gymdesk.com/signup/v/lBa2R">Book a trial class</a>
+    <a class="btn rv" style="background:transparent; color:#F5EFE6; box-shadow:inset 0 0 0 1.5px rgba(245,239,230,.5); margin-left:10px" href="https://app.gymdesk.com/signup/v/lO9KP">Become a member</a>
   </div>
 </section>
 
@@ -315,10 +317,12 @@
     </div>
     <p><a href="https://maps.apple.com/?q=233+Akamainui+Street+Unit+27+Mililani+HI+96789">233 Akamainui Street, Unit 27 · Mililani, HI 96789</a></p>
     <p><a href="mailto:info@kipapagrapplingclub.com">info@kipapagrapplingclub.com</a> · <a href="https://instagram.com/kipapagrapplingclub" rel="noopener">Instagram @kipapagrapplingclub</a></p>
+    <p><a href="https://app.gymdesk.com/signup/v/lBa2R">Book a trial class</a> · <a href="https://app.gymdesk.com/signup/v/lO9KP">Become a member</a> · <a href="https://app.gymdesk.com/login">Member login</a></p>
     <p class="mono" style="font-size:11px; letter-spacing:.08em; margin-top:10px">PAVING THE WAY FOR FUTURE GENERATIONS</p>
   </div>
 </footer>
 
+<script src="https://app.gymdesk.com/js/widgets.js"></script>
 <script>
   (function(){
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
