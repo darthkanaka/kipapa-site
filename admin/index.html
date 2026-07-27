@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kīpapa Editor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<style>
+  *{box-sizing:border-box}
+  :root{
+    --ink:#100E0C; --ink2:#161310; --bone:#EDE7DC; --bone-dim:#C9C1B5;
+    --koa:#8B5C49; --ember:#C08A6F; --line:#2E2822; --mut:#9C948A; --mut2:#7E766B; --ok:#7FA070; --bad:#B05C4A
+  }
+  body{margin:0; background:var(--ink); color:var(--bone);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.5}
+  .wrap{max-width:640px; margin:0 auto; padding:0 16px 80px}
+  .top{display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid var(--line); margin-bottom:18px}
+  .top .mark{display:flex; align-items:center; gap:10px}
+  .top img{width:26px; filter:invert(1)}
+  .top b{font-size:12px; letter-spacing:.18em; text-transform:uppercase}
+  .top button{background:none; border:1px solid var(--line); color:var(--mut); padding:7px 12px; font-size:12px; cursor:pointer}
+  h2{font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--ember); margin:26px 0 4px}
+  .hint{font-size:12.5px; color:var(--mut2); margin:0 0 12px}
+  .card{background:var(--ink2); border:1px solid var(--line); padding:14px; margin-bottom:10px}
+  label{display:block; font-size:12px; color:var(--mut); margin:10px 0 4px}
+  input[type=text],input[type=date],input[type=email],input[type=password],textarea{
+    width:100%; background:#1E1915; border:1px solid #3A332C; color:var(--bone);
+    padding:11px 12px; font-size:16px; font-family:inherit}
+  textarea{min-height:84px; resize:vertical}
+  input:focus,textarea:focus{outline:2px solid var(--koa)}
+  .btn{display:inline-block; background:var(--koa); color:#F5EFE6; border:0; padding:12px 20px;
+    font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; cursor:pointer; margin-top:10px}
+  .btn.small{padding:8px 12px; font-size:11px; margin-top:0}
+  .btn.ghost{background:transparent; border:1px solid #4A423A; color:var(--bone-dim)}
+  .btn.danger{background:transparent; border:1px solid var(--bad); color:var(--bad)}
+  .btn:disabled{opacity:.5}
+  .row{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:10px}
+  .pill{font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; padding:4px 8px}
+  .pill.on{background:#243020; color:var(--ok)}
+  .pill.off{background:#302020; color:var(--bad)}
+  .item-title{font-weight:600; font-size:15px}
+  .item-sub{font-size:12.5px; color:var(--mut)}
+  .msg{position:fixed; left:16px; right:16px; bottom:16px; padding:12px 14px; font-size:13.5px; text-align:center; display:none; z-index:9}
+  .msg.ok{background:#243020; color:#CFE3C6; display:block}
+  .msg.bad{background:#302020; color:#EFC9BC; display:block}
+  .thumb{width:74px; height:74px; object-fit:cover; filter:grayscale(1); border:1px solid var(--line)}
+  .photo-row{display:flex; gap:12px; align-items:center}
+  .photo-row .grow{flex:1}
+  #login{max-width:420px; margin:8vh auto 0; padding:0 16px}
+  #login .card{padding:22px}
+  .savebar{font-size:11px; color:var(--mut2); margin-top:6px}
+  section{display:none}
+  .tabs{display:flex; gap:6px; margin:14px 0 6px; flex-wrap:wrap}
+  .tabs button{flex:1; min-width:100px; background:none; border:1px solid var(--line); color:var(--mut);
+    padding:10px 6px; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; cursor:pointer}
+  .tabs button.active{background:var(--koa); border-color:var(--koa); color:#F5EFE6; font-weight:700}
+</style>
+</head>
+<body>
+
+<div id="login">
+  <div class="top" style="border:0"><div class="mark"><img src="../assets/logo.png" alt=""><b>Kīpapa Editor</b></div></div>
+  <div class="card">
+    <p class="hint" style="margin-top:0">Sign in to edit the website. This page is for Coach Gabriel and Kawika only.</p>
+    <label>Email</label><input type="email" id="li-email" autocomplete="username">
+    <label>Password</label><input type="password" id="li-pw" autocomplete="current-password">
+    <button class="btn" id="li-go">Sign in</button>
+  </div>
+</div>
+
+<div id="app" style="display:none">
+  <div class="wrap">
+    <div class="top">
+      <div class="mark"><img src="../assets/logo.png" alt=""><b>Kīpapa Editor</b></div>
+      <button id="signout">Sign out</button>
+    </div>
+
+    <div class="tabs">
+      <button data-tab="annc" class="active">News</button>
+      <button data-tab="photos">Photos</button>
+      <button data-tab="events">Events</button>
+      <button data-tab="text">Site text</button>
+    </div>
+
+    <section id="tab-annc" style="display:block">
+      <h2>Announcements</h2>
+      <p class="hint">These show in a bar near the top of the homepage. Discounts, closures, big news. Give one an end date and it takes itself down.</p>
+      <div class="card">
+        <label>Title</label><input type="text" id="an-title" placeholder="Labor Day: no classes Monday">
+        <label>Details (optional)</label><textarea id="an-body" placeholder="Back on the mats Tuesday."></textarea>
+        <label>Stops showing after (optional)</label><input type="date" id="an-exp">
+        <button class="btn" id="an-add">Post it</button>
+      </div>
+      <div id="an-list"></div>
+    </section>
+
+    <section id="tab-photos">
+      <h2>Photo gallery</h2>
+      <p class="hint">Photos show on the homepage in black and white automatically, so anything from your camera roll matches the site. Newest first.</p>
+      <div class="card">
+        <input type="file" id="ph-file" accept="image/*">
+        <label>Caption (optional)</label><input type="text" id="ph-cap" placeholder="First week on the mats">
+        <button class="btn" id="ph-add">Upload photo</button>
+      </div>
+      <div id="ph-list"></div>
+    </section>
+
+    <section id="tab-events">
+      <h2>Events</h2>
+      <p class="hint">Upcoming happenings: seminars, competitions, belt promotions. They show under the schedule on the homepage until their date passes.</p>
+      <div class="card">
+        <label>Event name</label><input type="text" id="ev-title" placeholder="First open mat">
+        <label>Date</label><input type="date" id="ev-date">
+        <label>Details (optional)</label><textarea id="ev-body"></textarea>
+        <button class="btn" id="ev-add">Add event</button>
+      </div>
+      <div id="ev-list"></div>
+    </section>
+
+    <section id="tab-text">
+      <h2>Site text</h2>
+      <p class="hint">The main paragraphs on the homepage. Edit and save. Keep it in your voice, short sentences are fine.</p>
+      <div id="tx-list"></div>
+    </section>
+  </div>
+</div>
+
+<p class="msg" id="msg"></p>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+var sb = window.supabase.createClient('https://jwpmbeyfcmbtppgrpjpp.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3cG1iZXlmY21idHBwZ3JwanBwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUxMTkwOTIsImV4cCI6MjEwMDY5NTA5Mn0.W8PY8ZT4St05-15Myb4yjqDULRUYX78ed2f1kFnQ1-M');
+var TX_LABELS = {
+  hero_sub: 'Top of the page: the paragraph under CHAMPIONS ARE FORGED HERE',
+  coach_bio_1: 'About the room: first paragraph',
+  coach_bio_2: 'About the room: second paragraph',
+  faith_body: 'The faith section paragraph',
+  faq_experience: 'FAQ: Does my kid need experience?',
+  faq_wear: 'FAQ: What do they wear?',
+  faq_expected: 'FAQ: What is expected of us?',
+  faq_safe: 'FAQ: Is it safe?',
+  faq_cost: 'FAQ: How much does it cost?'
+};
+function msg(text, bad){
+  var el = document.getElementById('msg');
+  el.textContent = text; el.className = 'msg ' + (bad ? 'bad' : 'ok');
+  setTimeout(function(){ el.className = 'msg'; }, 3200);
+}
+function esc(s){ var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+
+document.getElementById('li-go').addEventListener('click', doLogin);
+document.getElementById('li-pw').addEventListener('keydown', function(e){ if(e.key === 'Enter') doLogin(); });
+function doLogin(){
+  sb.auth.signInWithPassword({
+    email: document.getElementById('li-email').value.trim(),
+    password: document.getElementById('li-pw').value
+  }).then(function(r){
+    if(r.error){ msg('Sign in failed: ' + r.error.message, true); return; }
+    boot();
+  });
+}
+document.getElementById('signout').addEventListener('click', function(){
+  sb.auth.signOut().then(function(){ location.reload(); });
+});
+
+document.querySelectorAll('.tabs button').forEach(function(b){
+  b.addEventListener('click', function(){
+    document.querySelectorAll('.tabs button').forEach(function(x){ x.classList.toggle('active', x === b); });
+    document.querySelectorAll('#app section').forEach(function(s){ s.style.display = 'none'; });
+    document.getElementById('tab-' + b.getAttribute('data-tab')).style.display = 'block';
+  });
+});
+
+function boot(){
+  document.getElementById('login').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  loadAnnc(); loadPhotos(); loadEvents(); loadText();
+}
+sb.auth.getSession().then(function(r){ if(r.data.session) boot(); });
+
+/* ---- announcements ---- */
+function loadAnnc(){
+  sb.from('announcements').select('*').order('created_at', {ascending:false}).then(function(r){
+    if(r.error){ msg('Could not load announcements', true); return; }
+    document.getElementById('an-list').innerHTML = r.data.map(function(a){
+      return '<div class="card"><div class="item-title">' + esc(a.title) + '</div>'
+        + (a.body ? '<div class="item-sub">' + esc(a.body) + '</div>' : '')
+        + (a.expires_on ? '<div class="item-sub">Until ' + esc(a.expires_on) + '</div>' : '')
+        + '<div class="row"><span class="pill ' + (a.published ? 'on">Showing' : 'off">Hidden') + '</span>'
+        + '<button class="btn small ghost" onclick="togAnnc(\'' + a.id + '\',' + !a.published + ')">' + (a.published ? 'Hide' : 'Show') + '</button>'
+        + '<button class="btn small danger" onclick="delAnnc(\'' + a.id + '\')">Delete</button></div></div>';
+    }).join('') || '<p class="hint">Nothing posted yet.</p>';
+  });
+}
+document.getElementById('an-add').addEventListener('click', function(){
+  var t = document.getElementById('an-title').value.trim();
+  if(!t){ msg('Give it a title first', true); return; }
+  sb.from('announcements').insert({
+    title: t,
+    body: document.getElementById('an-body').value.trim(),
+    expires_on: document.getElementById('an-exp').value || null
+  }).then(function(r){
+    if(r.error){ msg('Could not post: ' + r.error.message, true); return; }
+    document.getElementById('an-title').value = ''; document.getElementById('an-body').value = ''; document.getElementById('an-exp').value = '';
+    msg('Posted. It is live on the site now.'); loadAnnc();
+  });
+});
+window.togAnnc = function(id, pub){ sb.from('announcements').update({published: pub}).eq('id', id).then(function(){ loadAnnc(); msg(pub ? 'Showing on the site' : 'Hidden from the site'); }); };
+window.delAnnc = function(id){ if(!confirm('Delete this announcement?')) return; sb.from('announcements').delete().eq('id', id).then(function(){ loadAnnc(); msg('Deleted'); }); };
+
+/* ---- photos ---- */
+function loadPhotos(){
+  sb.from('gallery_photos').select('*').order('created_at', {ascending:false}).then(function(r){
+    if(r.error){ msg('Could not load photos', true); return; }
+    document.getElementById('ph-list').innerHTML = r.data.map(function(p){
+      var url = sb.storage.from('gallery').getPublicUrl(p.storage_path).data.publicUrl;
+      return '<div class="card photo-row"><img class="thumb" src="' + url + '" alt="">'
+        + '<div class="grow"><div class="item-sub">' + esc(p.caption || 'No caption') + '</div>'
+        + '<div class="row"><span class="pill ' + (p.published ? 'on">Showing' : 'off">Hidden') + '</span>'
+        + '<button class="btn small ghost" onclick="togPhoto(\'' + p.id + '\',' + !p.published + ')">' + (p.published ? 'Hide' : 'Show') + '</button>'
+        + '<button class="btn small danger" onclick="delPhoto(\'' + p.id + '\',\'' + p.storage_path + '\')">Delete</button></div></div></div>';
+    }).join('') || '<p class="hint">No photos yet.</p>';
+  });
+}
+document.getElementById('ph-add').addEventListener('click', function(){
+  var f = document.getElementById('ph-file').files[0];
+  if(!f){ msg('Pick a photo first', true); return; }
+  var btn = document.getElementById('ph-add'); btn.disabled = true; btn.textContent = 'Uploading...';
+  var img = new Image();
+  img.onload = function(){
+    var scale = Math.min(1, 1600 / Math.max(img.width, img.height));
+    var c = document.createElement('canvas');
+    c.width = Math.round(img.width * scale); c.height = Math.round(img.height * scale);
+    c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+    c.toBlob(function(blob){
+      var path = 'photos/' + Date.now() + '.jpg';
+      sb.storage.from('gallery').upload(path, blob, {contentType: 'image/jpeg'}).then(function(r){
+        if(r.error){ msg('Upload failed: ' + r.error.message, true); btn.disabled = false; btn.textContent = 'Upload photo'; return; }
+        sb.from('gallery_photos').insert({storage_path: path, caption: document.getElementById('ph-cap').value.trim()}).then(function(r2){
+          btn.disabled = false; btn.textContent = 'Upload photo';
+          if(r2.error){ msg('Saved file but not the record: ' + r2.error.message, true); return; }
+          document.getElementById('ph-file').value = ''; document.getElementById('ph-cap').value = '';
+          msg('Photo is live on the site.'); loadPhotos();
+        });
+      });
+    }, 'image/jpeg', 0.85);
+  };
+  img.onerror = function(){ msg('Could not read that file as a photo', true); btn.disabled = false; btn.textContent = 'Upload photo'; };
+  img.src = URL.createObjectURL(f);
+});
+window.togPhoto = function(id, pub){ sb.from('gallery_photos').update({published: pub}).eq('id', id).then(function(){ loadPhotos(); msg(pub ? 'Showing on the site' : 'Hidden from the site'); }); };
+window.delPhoto = function(id, path){
+  if(!confirm('Delete this photo?')) return;
+  sb.from('gallery_photos').delete().eq('id', id).then(function(){
+    sb.storage.from('gallery').remove([path]).then(function(){ loadPhotos(); msg('Deleted'); });
+  });
+};
+
+/* ---- events ---- */
+function loadEvents(){
+  sb.from('events').select('*').order('event_date', {ascending:true}).then(function(r){
+    if(r.error){ msg('Could not load events', true); return; }
+    document.getElementById('ev-list').innerHTML = r.data.map(function(ev){
+      return '<div class="card"><div class="item-title">' + esc(ev.title) + '</div>'
+        + '<div class="item-sub">' + esc(ev.event_date || 'No date') + (ev.body ? ' · ' + esc(ev.body) : '') + '</div>'
+        + '<div class="row"><span class="pill ' + (ev.published ? 'on">Showing' : 'off">Hidden') + '</span>'
+        + '<button class="btn small ghost" onclick="togEv(\'' + ev.id + '\',' + !ev.published + ')">' + (ev.published ? 'Hide' : 'Show') + '</button>'
+        + '<button class="btn small danger" onclick="delEv(\'' + ev.id + '\')">Delete</button></div></div>';
+    }).join('') || '<p class="hint">No events yet.</p>';
+  });
+}
+document.getElementById('ev-add').addEventListener('click', function(){
+  var t = document.getElementById('ev-title').value.trim();
+  if(!t){ msg('Give the event a name first', true); return; }
+  sb.from('events').insert({
+    title: t,
+    event_date: document.getElementById('ev-date').value || null,
+    body: document.getElementById('ev-body').value.trim()
+  }).then(function(r){
+    if(r.error){ msg('Could not add: ' + r.error.message, true); return; }
+    document.getElementById('ev-title').value = ''; document.getElementById('ev-date').value = ''; document.getElementById('ev-body').value = '';
+    msg('Event added.'); loadEvents();
+  });
+});
+window.togEv = function(id, pub){ sb.from('events').update({published: pub}).eq('id', id).then(function(){ loadEvents(); msg(pub ? 'Showing on the site' : 'Hidden from the site'); }); };
+window.delEv = function(id){ if(!confirm('Delete this event?')) return; sb.from('events').delete().eq('id', id).then(function(){ loadEvents(); msg('Deleted'); }); };
+
+/* ---- site text ---- */
+function loadText(){
+  sb.from('site_content').select('*').then(function(r){
+    if(r.error){ msg('Could not load site text', true); return; }
+    var order = Object.keys(TX_LABELS);
+    var rows = r.data.slice().sort(function(a, b){ return order.indexOf(a.key) - order.indexOf(b.key); });
+    document.getElementById('tx-list').innerHTML = rows.map(function(t){
+      return '<div class="card"><label>' + esc(TX_LABELS[t.key] || t.key) + '</label>'
+        + '<textarea id="tx-' + t.key + '">' + esc(t.value) + '</textarea>'
+        + '<button class="btn small" style="margin-top:8px" onclick="saveText(\'' + t.key + '\')">Save</button>'
+        + '<div class="savebar">Saves straight to the live site.</div></div>';
+    }).join('');
+  });
+}
+window.saveText = function(key){
+  sb.from('site_content').update({value: document.getElementById('tx-' + key).value, updated_at: new Date().toISOString()}).eq('key', key).then(function(r){
+    if(r.error){ msg('Could not save: ' + r.error.message, true); return; }
+    msg('Saved. It is live now.');
+  });
+};
+</script>
+</body>
+</html>
