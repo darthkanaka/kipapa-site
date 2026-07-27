@@ -28,6 +28,7 @@
     width:100%; background:#1E1915; border:1px solid #3A332C; color:var(--bone);
     padding:11px 12px; font-size:16px; font-family:inherit}
   textarea{min-height:84px; resize:vertical}
+  input::placeholder,textarea::placeholder{color:#564E44; opacity:1; font-style:italic}
   input:focus,textarea:focus{outline:2px solid var(--koa)}
   .btn{display:inline-block; background:var(--koa); color:#F5EFE6; border:0; padding:12px 20px;
     font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; cursor:pointer; margin-top:10px}
@@ -87,8 +88,8 @@
       <h2>Announcements</h2>
       <p class="hint">These show in a bar near the top of the homepage. Discounts, closures, big news. Give one an end date and it takes itself down.</p>
       <div class="card">
-        <label>Title</label><input type="text" id="an-title" placeholder="Labor Day: no classes Monday">
-        <label>Details (optional)</label><textarea id="an-body" placeholder="Back on the mats Tuesday."></textarea>
+        <label>Title</label><input type="text" id="an-title" placeholder="Give your announcement a title...">
+        <label>Details (optional)</label><textarea id="an-body" placeholder="Add any details worth knowing..."></textarea>
         <label>Stops showing after (optional)</label><input type="date" id="an-exp">
         <button class="btn" id="an-add">Post it</button>
       </div>
@@ -100,7 +101,7 @@
       <p class="hint">Photos show on the homepage in black and white automatically, so anything from your camera roll matches the site. Newest first.</p>
       <div class="card">
         <input type="file" id="ph-file" accept="image/*">
-        <label>Caption (optional)</label><input type="text" id="ph-cap" placeholder="First week on the mats">
+        <label>Caption (optional)</label><input type="text" id="ph-cap" placeholder="Describe the photo in a few words...">
         <button class="btn" id="ph-add">Upload photo</button>
       </div>
       <div id="ph-list"></div>
@@ -110,7 +111,7 @@
       <h2>Events</h2>
       <p class="hint">Upcoming happenings: seminars, competitions, belt promotions. They show under the schedule on the homepage until their date passes.</p>
       <div class="card">
-        <label>Event name</label><input type="text" id="ev-title" placeholder="First open mat">
+        <label>Event name</label><input type="text" id="ev-title" placeholder="Name the event...">
         <label>Date</label><input type="date" id="ev-date">
         <label>Details (optional)</label><textarea id="ev-body"></textarea>
         <button class="btn" id="ev-add">Add event</button>
