@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Programs | Kīpapa Grappling Club</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Kids Jiu Jitsu, adults program, and private lessons at Kīpapa Grappling Club in Mililani. Small classes, personal attention, old-school values.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preload" href="assets/fonts/oswald-var.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face{
+    font-family:'Oswald';
+    src:url('assets/fonts/oswald-var.woff2') format('woff2');
+    font-weight:200 700;
+    font-display:swap;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  :root{
+    --ink:#100E0C; --ink2:#161310; --bone:#EDE7DC; --bone-dim:#C9C1B5;
+    --koa:#8B5C49; --ember:#C08A6F; --line:#2E2822; --mut:#9C948A; --mut2:#7E766B
+  }
+  body{margin:0; background:var(--ink); color:var(--bone); overflow-x:hidden;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.55}
+  .cond{font-family:'Oswald','Arial Narrow',Arial,sans-serif; font-weight:700; text-transform:uppercase}
+  .inner{max-width:760px; margin:0 auto; padding:0 24px}
+  a{color:inherit; text-decoration:none}
+  a:focus-visible{outline:2px solid var(--ember); outline-offset:3px}
+
+  .nav{display:flex; justify-content:space-between; align-items:center; padding:16px 24px; max-width:1060px; margin:0 auto}
+  .nav .mark img{width:46px; height:auto; filter:invert(1); display:block}
+  .nav .back{font-size:12.5px; color:var(--mut)}
+  .nav .back:hover{color:var(--bone)}
+
+  .label{display:inline-block; font-family:'Oswald',Arial,sans-serif; font-weight:600; text-transform:uppercase; font-size:13px; letter-spacing:.18em; color:#F5EFE6; background:var(--koa); padding:6px 14px; transform:skewX(-8deg); margin:0 0 18px}
+  .label b{display:inline-block; transform:skewX(8deg); font-weight:600}
+  .h1{font-size:clamp(36px,8vw,64px); line-height:.94; margin:0 0 14px; text-wrap:balance}
+  .h2{font-size:clamp(28px,5vw,44px); line-height:.96; margin:0 0 14px; text-wrap:balance}
+  p.body{color:var(--bone-dim); font-size:15.5px; max-width:58ch; margin:0 0 14px}
+  .micro{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:11.5px; color:var(--mut2); margin:0 0 10px}
+
+  .head{padding:44px 0 8px}
+  .prog{border-top:1px solid var(--line); padding:44px 0}
+  .ctas{display:flex; gap:12px; flex-wrap:wrap; margin-top:22px}
+  .btn{display:inline-block; background:var(--koa); color:#F5EFE6; border:0; padding:14px 24px;
+    font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; transition:transform .25s ease}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.ghost{background:transparent; color:var(--bone); box-shadow:inset 0 0 0 1.5px #4A423A}
+  @media (prefers-reduced-motion: reduce){ .btn:hover{transform:none} }
+  @media (max-width:640px){ .ctas{flex-direction:column} .btn{display:block; width:100%; text-align:center} }
+
+  .foot{padding:26px 0 44px; color:var(--mut2); font-size:13px; border-top:1px solid var(--line)}
+  .foot a:hover{color:var(--bone)}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <a class="mark" href="index.html">
+    <img src="assets/logo.png" alt="Kīpapa Grappling Club logo">
+  </a>
+  <a class="back" href="index.html">&larr; Back to the site</a>
+</nav>
+
+<header class="head">
+  <div class="inner">
+    <p class="label"><b>Club programs</b></p>
+    <h1 class="h1 cond">Find your place on the mats.</h1>
+    <p class="body">Small classes, personal attention, and a standard of hard work, humility, and respect in every room.</p>
+  </div>
+</header>
+
+<section class="prog" id="kids">
+  <div class="inner">
+    <p class="micro">PROGRAM 01</p>
+    <h2 class="h2 cond">Kids Program</h2>
+    <p class="body" data-kc="prog_kids">The Kīpapa Kids Program uses Jiu Jitsu to help children grow in confidence, discipline, respect, and resilience. In our small classes, every child receives personal attention and encouragement while learning the value of hard work, humility, and perseverance. We believe the lessons learned on the mats carry into the home, the classroom, and everyday life, helping shape strong kids with strong character.</p>
+    <div class="ctas">
+      <a class="btn" href="https://kipapa-grappling-club.gymdesk.com/signup/v/lO9KP" target="_blank" rel="noopener">Become a member</a>
+      <a class="btn ghost" href="book.html">Book a trial class</a>
+    </div>
+  </div>
+</section>
+
+<section class="prog" id="adults">
+  <div class="inner">
+    <p class="micro">PROGRAM 02</p>
+    <h2 class="h2 cond">Adults Program</h2>
+    <p class="body" data-kc="prog_adults">The Kīpapa Adults Program is designed for students of all experience levels. Through personalized coaching and a structured curriculum, students build a strong foundation in core Jiu-Jitsu positions, techniques, and concepts before progressing into live training and sparring. Our small class sizes create a welcoming environment where every student can grow in skill, confidence, and problem-solving on and off the mats.</p>
+    <div class="ctas">
+      <a class="btn" href="https://kipapa-grappling-club.gymdesk.com/signup/v/lO9KP" target="_blank" rel="noopener">Become a member</a>
+      <a class="btn ghost" href="book.html">Book a trial class</a>
+    </div>
+  </div>
+</section>
+
+<section class="prog" id="private">
+  <div class="inner">
+    <p class="micro">PROGRAM 03</p>
+    <h2 class="h2 cond">Private Lessons</h2>
+    <p class="body" data-kc="prog_private">Private lessons provide personalized, one-on-one instruction tailored to your individual goals. Whether you're looking to sharpen your technique, prepare for competition, build confidence, or accelerate your progress, each session is designed to help you improve efficiently through focused coaching and individualized feedback.</p>
+    <div class="ctas">
+      <a class="btn" href="https://kipapa-grappling-club.gymdesk.com/signup/v/lO9KP" target="_blank" rel="noopener">Become a member</a>
+      <a class="btn ghost" href="mailto:info@kipapagrapplingclub.com?subject=Private%20Lessons">Ask about privates</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="inner" style="padding-top:26px">
+    <p><a href="mailto:info@kipapagrapplingclub.com">info@kipapagrapplingclub.com</a> · <a href="https://instagram.com/kipapagrapplingclub" rel="noopener">@kipapagrapplingclub</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var U = 'https://jwpmbeyfcmbtppgrpjpp.supabase.co';
+    var K = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3cG1iZXlmY21idHBwZ3JwanBwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUxMTkwOTIsImV4cCI6MjEwMDY5NTA5Mn0.W8PY8ZT4St05-15Myb4yjqDULRUYX78ed2f1kFnQ1-M';
+    fetch(U + '/rest/v1/site_content?select=key,value', {headers: {apikey: K, Authorization: 'Bearer ' + K}})
+      .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+      .then(function(rows){
+        rows.forEach(function(r){
+          var el = document.querySelector('[data-kc="' + r.key + '"]');
+          if(el && r.value) el.textContent = r.value;
+        });
+      }).catch(function(){});
+  })();
+</script>
+</body>
+</html>
