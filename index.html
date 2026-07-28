@@ -357,6 +357,8 @@
 
 
 <section class="sec" id="faq">
+  <div class="pat" aria-hidden="true"></div>
+  <div class="pat-glow" aria-hidden="true"></div>
   <div class="inner faq">
     <p class="label rv"><b>Questions</b></p>
     <h2 class="h2 cond rv">Before you ask.</h2>
@@ -433,16 +435,16 @@
 <script>
   (function(){
     if (!window.matchMedia('(hover: hover)').matches) return;
-    var sec = document.getElementById('programs');
-    var glow = document.querySelector('.pat-glow');
-    if (!sec || !glow) return;
-    sec.addEventListener('pointermove', function(e){
-      var r = sec.getBoundingClientRect();
-      glow.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      glow.style.setProperty('--my', (e.clientY - r.top) + 'px');
-      glow.classList.add('on');
+    document.querySelectorAll('.pat-glow').forEach(function(glow){
+      var sec = glow.parentElement;
+      sec.addEventListener('pointermove', function(e){
+        var r = sec.getBoundingClientRect();
+        glow.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        glow.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        glow.classList.add('on');
+      });
+      sec.addEventListener('pointerleave', function(){ glow.classList.remove('on'); });
     });
-    sec.addEventListener('pointerleave', function(){ glow.classList.remove('on'); });
   })();
 </script>
 <script>
