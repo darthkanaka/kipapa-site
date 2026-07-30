@@ -78,12 +78,13 @@
   .btn.ghost{background:transparent; color:var(--bone); box-shadow:inset 0 0 0 1.5px #4A423A}
   .micro{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:11.5px; color:var(--mut2); margin:16px 0 0}
 
-  /* ticker */
-  .mq{overflow:hidden; background:var(--koa); padding:12px 0; transform:rotate(-1.4deg) scale(1.03); border-top:3px solid var(--ink); border-bottom:3px solid var(--ink); position:relative; z-index:2}
-  .mq-track{display:flex; gap:34px; white-space:nowrap; width:max-content; animation:mq 120s linear infinite;
-    font-family:'Oswald',Arial,sans-serif; font-weight:600; text-transform:uppercase; font-size:13.5px; letter-spacing:.14em; color:#F5EFE6}
-  .mq-track i{font-style:normal; color:#3E2A22}
-  @keyframes mq{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+
+  /* video bands */
+  .vband{position:relative; height:clamp(200px,34vw,380px); overflow:hidden; border-top:3px solid var(--ink); border-bottom:3px solid var(--ink); background:var(--ink2)}
+  .vband iframe{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:max(100vw,178vh); height:max(56.25vw,100%); pointer-events:none}
+  .vsec{padding:0 0 56px}
+  .vwrap{position:relative; padding-top:56.25%; background:var(--ink2); border:1px solid var(--line)}
+  .vwrap iframe{position:absolute; inset:0; width:100%; height:100%}
 
   /* sections */
   .sec{padding:64px 0; position:relative; overflow:hidden}
@@ -173,7 +174,6 @@
   .stag > *:nth-child(4){transition-delay:.3s}
   @media (prefers-reduced-motion: reduce){
     .rv{opacity:1; transform:none; transition:none}
-    .mq-track{animation:none}
     .btn:hover{transform:none}
     html{scroll-behavior:auto}
   }
@@ -230,15 +230,8 @@
   </div>
 </header>
 
-<div class="mq" aria-hidden="true">
-  <div class="mq-track">
-    <span>Hard work</span><i>&#10022;</i><span>Humility</span><i>&#10022;</i><span>Respect</span><i>&#10022;</i><span>Consistency</span><i>&#10022;</i><span>Perseverance</span><i>&#10022;</i><span>Community</span><i>&#10022;</i><span>Faith</span><i>&#10022;</i>
-    <span>Hard work</span><i>&#10022;</i><span>Humility</span><i>&#10022;</i><span>Respect</span><i>&#10022;</i><span>Consistency</span><i>&#10022;</i><span>Perseverance</span><i>&#10022;</i><span>Community</span><i>&#10022;</i><span>Faith</span><i>&#10022;</i>
-    <span>Hard work</span><i>&#10022;</i><span>Humility</span><i>&#10022;</i><span>Respect</span><i>&#10022;</i><span>Consistency</span><i>&#10022;</i><span>Perseverance</span><i>&#10022;</i><span>Community</span><i>&#10022;</i><span>Faith</span><i>&#10022;</i>
-    <span>Hard work</span><i>&#10022;</i><span>Humility</span><i>&#10022;</i><span>Respect</span><i>&#10022;</i><span>Consistency</span><i>&#10022;</i><span>Perseverance</span><i>&#10022;</i><span>Community</span><i>&#10022;</i><span>Faith</span><i>&#10022;</i>
-    <span>Hard work</span><i>&#10022;</i><span>Humility</span><i>&#10022;</i><span>Respect</span><i>&#10022;</i><span>Consistency</span><i>&#10022;</i><span>Perseverance</span><i>&#10022;</i><span>Community</span><i>&#10022;</i><span>Faith</span><i>&#10022;</i>
-    <span>Hard work</span><i>&#10022;</i><span>Humility</span><i>&#10022;</i><span>Respect</span><i>&#10022;</i><span>Consistency</span><i>&#10022;</i><span>Perseverance</span><i>&#10022;</i><span>Community</span><i>&#10022;</i><span>Faith</span><i>&#10022;</i>
-  </div>
+<div class="vband" aria-hidden="true">
+  <iframe src="https://player.vimeo.com/video/1214126180?background=1&autoplay=1&muted=1&loop=1&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1" frameborder="0" allow="autoplay; fullscreen" loading="lazy" title="Kīpapa Grappling Club"></iframe>
 </div>
 
 
@@ -273,6 +266,12 @@
   </div>
 </section>
 
+<section class="vsec">
+  <div class="inner">
+    <div class="vwrap"><iframe src="https://player.vimeo.com/video/1214125675?background=1&autoplay=1&muted=1&loop=1&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1" frameborder="0" allow="autoplay; fullscreen" loading="lazy" title="Kids on the mats at Kīpapa"></iframe></div>
+  </div>
+</section>
+
 <section class="sec tight" id="about">
   <div class="inner guide">
     <div class="frame rv" role="img" aria-label="Coach Gabriel and students at Kīpapa Grappling Club"></div>
@@ -285,6 +284,12 @@
   </div>
 </section>
 
+
+<section class="vsec">
+  <div class="inner">
+    <div class="vwrap"><iframe src="https://player.vimeo.com/video/1214125090?background=1&autoplay=1&muted=1&loop=1&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1" frameborder="0" allow="autoplay; fullscreen" loading="lazy" title="Coach Gabriel"></iframe></div>
+  </div>
+</section>
 
 <section class="sec tight" id="schedule">
   <div class="inner">
