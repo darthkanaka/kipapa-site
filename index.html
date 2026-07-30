@@ -51,6 +51,13 @@
   .subnav a:hover{color:var(--bone)}
   .subnav i{font-style:normal; color:#3A332C}
   #programs,#about,#schedule,#faq{scroll-margin-top:76px}
+  .pat{position:absolute; inset:0; background:url('assets/mark-tile.png') repeat; background-size:190px 172px;
+    filter:invert(1); opacity:.03; pointer-events:none}
+  .pat-glow{position:absolute; inset:0; background:url('assets/mark-tile.png') repeat; background-size:190px 172px;
+    filter:invert(1); opacity:0; pointer-events:none; transition:opacity .45s ease;
+    -webkit-mask-image:radial-gradient(250px circle at var(--mx,50%) var(--my,50%), #000 0%, transparent 72%);
+    mask-image:radial-gradient(250px circle at var(--mx,50%) var(--my,50%), #000 0%, transparent 72%)}
+  .pat-glow.on{opacity:.16}
   .step .go{display:inline-block; margin-top:14px; font-family:'Oswald',Arial,sans-serif; font-weight:600;
     text-transform:uppercase; font-size:12.5px; letter-spacing:.08em; color:var(--ember)}
 
@@ -92,7 +99,7 @@
 
   /* guide */
   .guide{display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center}
-  .frame{min-height:340px; border:1px solid var(--line); position:relative; background:url('assets/hero.jpg') center 25%/cover no-repeat; filter:grayscale(1)}
+  .frame{min-height:340px; border:1px solid var(--line); position:relative; background:url('assets/instructor.jpg') center/cover no-repeat; filter:grayscale(1)}
   .frame .cap{position:absolute; left:0; bottom:0; right:0; background:rgba(16,14,12,.8); padding:8px 12px;
     font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:10.5px; letter-spacing:.1em; color:var(--mut)}
   .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px}
@@ -268,9 +275,7 @@
 
 <section class="sec tight" id="about">
   <div class="inner guide">
-    <div class="frame rv">
-      <span class="cap">PHOTO FROM KIPAPAGRAPPLINGCLUB.COM</span>
-    </div>
+    <div class="frame rv" role="img" aria-label="Coach Gabriel and students at Kīpapa Grappling Club"></div>
     <div class="stag">
       <p class="label rv"><b>Instructors</b></p>
       <h2 class="h2 cond rv">Led by Gabriel Miller.</h2>
@@ -311,6 +316,8 @@
 
 
 <section class="sec" id="faq">
+  <div class="pat" aria-hidden="true"></div>
+  <div class="pat-glow" aria-hidden="true"></div>
   <div class="inner faq">
     <p class="label rv"><b>FAQ</b></p>
     <h2 class="h2 cond rv">Before you ask.</h2>
@@ -383,6 +390,21 @@
       }).join('');
       document.getElementById('kc-gallery').hidden = false;
     }).catch(function(){});
+  })();
+</script>
+<script>
+  (function(){
+    if (!window.matchMedia('(hover: hover)').matches) return;
+    document.querySelectorAll('.pat-glow').forEach(function(glow){
+      var sec = glow.parentElement;
+      sec.addEventListener('pointermove', function(e){
+        var r = sec.getBoundingClientRect();
+        glow.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        glow.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        glow.classList.add('on');
+      });
+      sec.addEventListener('pointerleave', function(){ glow.classList.remove('on'); });
+    });
   })();
 </script>
 <script>
